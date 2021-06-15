@@ -845,7 +845,7 @@ export class CheckoutComponent implements OnInit {
       const data = {
         subcategory_id : sessionStorage.getItem('sub_id')
       }
-      this.crexinservice.addfavs(data).subscribe((res)=>{
+      this.checkoutservice.addfavs(data).subscribe((res)=>{
         console.log(res);
         this.toastr.success(this.message,res.response,{
               positionClass: 'toast-top-center'
