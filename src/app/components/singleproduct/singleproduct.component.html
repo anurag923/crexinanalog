@@ -414,23 +414,26 @@
                     </div>
                   </form>
                 </div>
+
+
+                <div class="row my-2 w-100 mgl-0 mgr-0">
+
+                  <div class="col-md-12 my-2 d-flex justify-content-end align-items-end">
+                    <button *ngIf="Hourly_button" type="button" class="fs-15 btn btn text-dark fw-500"
+                      (click)="Hourlyoption(singleproduct.id)">RENT NOW</button>
+                    <button *ngIf="Daily_button" type="button" class="fs-15 btn btn text-dark fw-500"
+                      (click)="Dailyoption(singleproduct.id)">RENT NOW</button>
+                    <button *ngIf="Weekly_button" type="button" class="fs-15 btn btn text-dark fw-500"
+                      (click)="Weeklyoption(singleproduct.id)">RENT NOW</button>
+                  </div>
+                </div>
               </div>
               <!-- <div class="col-md-6 mt-1">
                         <div>
                           <p class="fs-15 ">{{singleproduct.notes}}</p>
                         </div>
                       </div> -->
-              <div class="row my-2 w-100 mgl-0 mgr-0">
 
-                <div class="col-md-12 my-2 d-flex justify-content-end align-items-end">
-                  <button *ngIf="Hourly_button" type="button" class="fs-15 btn btn text-dark fw-500"
-                    (click)="Hourlyoption(singleproduct.id)">RENT NOW</button>
-                  <button *ngIf="Daily_button" type="button" class="fs-15 btn btn text-dark fw-500"
-                    (click)="Dailyoption(singleproduct.id)">RENT NOW</button>
-                  <button *ngIf="Weekly_button" type="button" class="fs-15 btn btn text-dark fw-500"
-                    (click)="Weeklyoption(singleproduct.id)">RENT NOW</button>
-                </div>
-              </div>
             </div>
           </div>
           <!-- <div class="row my-3 mgl-0 mgr-0" *ngIf="categorie_products">
