@@ -537,7 +537,37 @@ export class CheckoutComponent implements OnInit {
       this.checked_hourly = false;
       this.checked_weekly = false;
       this.bookingtype = 'daily';
-    
+      
+      const headers= new HttpHeaders()
+    .set('content-type', 'application/json')
+    .set('Access-Control-Allow-Origin', '*')
+    .set('Authorization',`Bearer ${this.auth_token}`);
+    this.http.get<any>('https://superuser.crexin.com/api/subcategory/'+sessionStorage.getItem('sub_id'),{'headers':headers}).pipe(shareReplay(1)).subscribe((res)=>{
+      console.log(res); 
+      this.singleproduct = res.response;
+      this.subcategory_name = res.response.sc_name
+      this.subcategory_image = res.response.sc_image
+      // this.hourly_rate = res.equipment.hourly_rate
+      if(sessionStorage.getItem('time')=='hourly'){
+        this.subcategory_rate = res.response.hourly_rate
+      }
+      if(sessionStorage.getItem('time')=='daily'){
+        this.subcategory_rate = res.response.daily_rate
+      }
+      if(sessionStorage.getItem('time')=='weekly'){
+        this.subcategory_rate = res.response.weekly_rate
+      }
+
+      if(sessionStorage.getItem('time')==null){
+        this.subcategory_rate = res.response.hourly_rate
+      }
+      sessionStorage.setItem('hourly_rate', res.response.hourly_rate)
+      sessionStorage.setItem('daily_rate', res.response.daily_rate)
+      sessionStorage.setItem('weekly_rate', res.response.weekly_rate)
+      // console.log(sessionStorage.getItem('hourly_rate'))
+      // this.daily_rate = res.equipment.daily_rate
+      // this.weekly_rate =  res.equipment.weekly_rate
+    });
 
     }
     weekly_function(){
