@@ -10,7 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CrexinService } from './services/crexin.service';
 import { HttpClientModule,HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
-import { CommonModule, HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { AuthService } from './services/auth.service';
 import { CrexinInterceptor } from './interceptor/crexin.interceptor';
 import { SubcategoriesModule } from './components/subcategories/subcategories.module';
@@ -54,7 +54,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     useClass: CrexinInterceptor,
     multi: true
   },
-  {provide: LocationStrategy, useClass: HashLocationStrategy}],
+  // {provide: LocationStrategy, useClass: HashLocationStrategy}
+],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
