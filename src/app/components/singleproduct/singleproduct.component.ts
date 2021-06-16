@@ -336,6 +336,53 @@ export class SingleproductComponent implements OnInit {
     this.Weekly_button = true;
   }
   categoriedetails(index:number,cat_id:any,categorie){
+    sessionStorage.setItem('categoryclick','true')
+    if(sessionStorage.getItem('categoryclick')=='true'){
+      if(sessionStorage.getItem('time')==null){
+        sessionStorage.removeItem('no_hours');
+        sessionStorage.removeItem('h_startdate');
+        sessionStorage.removeItem('h_starttime');
+        this.no_of_hours = "";
+        this.start_date = "";
+        this.start_time = "";
+        }
+      else if(sessionStorage.getItem('time')=='hourly'){
+        sessionStorage.removeItem('no_hours');
+        sessionStorage.removeItem('h_startdate');
+        sessionStorage.removeItem('h_starttime');
+        sessionStorage.removeItem('time');
+        this.no_of_hours = "";
+        this.start_date = "";
+        this.start_time = "";
+      }
+      else if(sessionStorage.getItem('time')=='daily'){
+        sessionStorage.removeItem('no_days');
+        sessionStorage.removeItem('d_starttime');
+        sessionStorage.removeItem('d_startdate');
+        sessionStorage.removeItem('d_endtime');
+        sessionStorage.removeItem('d_enddate');
+        sessionStorage.removeItem('time');
+        this.no_of_days = "";
+        this.d_start_date = "";
+        this.d_start_time = "";
+        this.end_date = "";
+        this.end_time = "";
+      }
+
+      else if(sessionStorage.getItem('time')=='weekly'){
+        sessionStorage.removeItem('no_weeks');
+        sessionStorage.removeItem('w_starttime');
+        sessionStorage.removeItem('w_startdate');
+        sessionStorage.removeItem('w_endtime');
+        sessionStorage.removeItem('w_enddate');
+        sessionStorage.removeItem('time');
+        this.no_of_weeks = "";
+        this.w_start_time = "";
+        this.w_start_date = "";
+        this.wend_date = "";
+        this.wend_time = "";
+      }
+    }
     this.selectedIndex = index;
     this.selectedItem = categorie.c_name;
     sessionStorage.setItem('cat_id',cat_id);
