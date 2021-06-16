@@ -23,9 +23,7 @@ const routes: Routes = [
   { path: 'profile', loadChildren: () => import('./components/profile/profile.module').then(m => m.ProfileModule) },
   { path: 'Rent/Check-out', loadChildren: () => import('./components/checkout/checkout.module').then(m => m.CheckoutModule) },
   { path: 'Rent/BookingTypeSelection', loadChildren: () => import('./components/singleproduct/singleproduct.module').then(m => m.SingleproductModule) },
-  {
-    path: 'Termsandconditions', component:TermsandconditionsComponent
-  },
+  {path: 'Termsandconditions', component:TermsandconditionsComponent},
   { path: 'account_password', loadChildren: () => import('./auth/account-password/account-password.module').then(m => m.AccountPasswordModule) },
   { path: 'notifications', loadChildren: () => import('./components/notifications/notifications.module').then(m => m.NotificationsModule) },
   { path: 'helpcenter', loadChildren: () => import('./components/helpcenter/helpcenter.module').then(m => m.HelpcenterModule) },
