@@ -2,7 +2,7 @@
     background-color: #e5e5e5;
 }
 .frm-brd{
-    border-radius: 10px;
+    border-radius: 5px;
     border: 1px solid #a7abac;
 }
 .seven-23{
@@ -20,12 +20,12 @@
     background: url(/assets/images/JCB-2.jpeg);
     background-position: center;
     background-repeat: no-repeat;
-    background-size: cover;
-    height: 620px;
+    min-height: 620px;
     border-radius: 20px;
 }
 .fnt-sz{
-    font-size: 21px;
-    text-align: justify;
-    line-height: 40px !important;
+    font-size: 18px;
+    text-align: left;
+    line-height: 30px !important;
+    font-weight:300 !important;
 }
