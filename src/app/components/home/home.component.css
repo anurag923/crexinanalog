@@ -91,3 +91,7 @@ label{
   {
       color:#000 !important;
   }
+  .loc_cls
+  {
+        height: calc(2.5rem + 2px) !important;
+  }

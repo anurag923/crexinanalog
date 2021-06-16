@@ -1656,7 +1656,7 @@ border: 1.5px solid #7b7b7b;
     flex-direction: row;
   }
   select.form-control:not([size]):not([multiple]) {
-    height: calc(2.3rem + 2px) !important;
+    height: calc(2.3rem + 2px);
 }
 .width_too
 {
