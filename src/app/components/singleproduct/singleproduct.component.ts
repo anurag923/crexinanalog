@@ -399,6 +399,7 @@ export class SingleproductComponent implements OnInit {
   //   })
   // }
   Hourlyoption(id:any){
+    sessionStorage.setItem('rentclicked','true');
     console.log(id);
     sessionStorage.setItem('sub_id',id);
     this.submitted_hourly = true;
@@ -466,6 +467,7 @@ export class SingleproductComponent implements OnInit {
   }
   Dailyoption(id:any){
     sessionStorage.setItem('sub_id',id);
+    sessionStorage.setItem('rentclicked','true');
     
     this.submitted_daily = true;
     if(this.Daily.invalid){
@@ -556,6 +558,8 @@ export class SingleproductComponent implements OnInit {
   }
   Weeklyoption(id:any){
     sessionStorage.setItem('sub_id',id);
+    sessionStorage.setItem('rentclicked','true');
+
     this.submitted_weekly = true;
     if(this.Weekly.invalid){
       return false;

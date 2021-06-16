@@ -6,7 +6,7 @@ import { SingleproductComponent } from './singleproduct.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 import { SharedModule } from '../../shared/shared/shared.module';
-
+import { RemovevalGuard } from '../../guards/guards/removeval.guard';
 
 @NgModule({
   declarations: [SingleproductComponent],
@@ -17,6 +17,7 @@ import { SharedModule } from '../../shared/shared/shared.module';
     ReactiveFormsModule,
     NgxMaterialTimepickerModule,
     SharedModule
-  ]
+  ],
+  providers:[RemovevalGuard]
 })
 export class SingleproductModule { }
