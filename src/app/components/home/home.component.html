@@ -185,7 +185,7 @@
             <form [formGroup]="UserEnquiry">
 
               <div class="form-group">
-                <label for="" class="fs-15 text-light font-italic my-2 w-75">Name</label>
+                <label for="" class="fs-15 text-light my-2 w-75">Name</label>
                 <input type="text" class="form-control form-jcb" placeholder="Name*" id="name" [(ngModel)]="name"
                   formControlName="fullname" [ngClass]="{ 'is-invalid': submitted && f.fullname.errors }">
                 <div *ngIf="submitted && f.fullname.errors" class="invalid-feedback enquiry-error-message">
@@ -193,7 +193,7 @@
                 </div>
               </div>
               <div class="form-group">
-                <label for="" class="fs-15 text-light my-2 font-italic w-75">Email</label>
+                <label for="" class="fs-15 text-light my-2 w-75">Email</label>
                 <input type="email" class="form-control form-jcb" placeholder="Email" id="email" [(ngModel)]="email"
                   formControlName="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
                 <div *ngIf="submitted && f.email.errors" class="invalid-feedback enquiry-error-message">
@@ -202,7 +202,7 @@
                 </div>
               </div>
               <div class="form-group">
-                <label for="" class="fs-15 text-light my-2 font-italic w-75">Mobile</label>
+                <label for="" class="fs-15 text-light my-2  w-75">Mobile</label>
                 <input type="tel" class="form-control form-jcb" placeholder="Mobile*" id="number" [(ngModel)]="mobile"
                   formControlName="mobile" [ngClass]="{ 'is-invalid': submitted && f.mobile.errors }">
                 <div *ngIf="submitted && f.mobile.errors" class="invalid-feedback enquiry-error-message">
@@ -211,7 +211,7 @@
                 </div>
               </div>
               <div class="form-group">
-                <label for="" class="fs-15 text-light my-2 font-italic w-75">Location</label>
+                <label for="" class="fs-15 text-light my-2  w-75">Location</label>
                 <input type="text" class="form-control form-jcb" placeholder="Hyderabad" [(ngModel)]="location"
                   id="location" formControlName="location" [ngClass]="{ 'is-invalid': submitted && f.location.errors }">
                 <div *ngIf="submitted && f.location.errors" class="invalid-feedback enquiry-error-message">
@@ -219,7 +219,7 @@
                 </div>
               </div>
               <div class="form-group">
-                <label for="" class="text-light fs-15 my-2 font-italic w-75">Description</label>
+                <label for="" class="text-light fs-15 my-2  w-75">Description</label>
                 <textarea class="form-control form-jcb-txtarea" rows="3" [(ngModel)]="description"
                   placeholder="Type here....." id="comment" formControlName="description"
                   [ngClass]="{ 'is-invalid': submitted && f.description.errors }"></textarea>

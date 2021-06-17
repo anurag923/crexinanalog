@@ -22,3 +22,39 @@
     
     background-position: right calc(-1.625em + 0.1875rem) center !important;
 }
+.form-control
+{
+    padding: 0 4px !important;
+    font-size:13px !important;
+}
+.ht34
+{
+    height:34px !important;
+}
+select:hover {
+   border:1px solid #dca101 !important;
+  }
+  select:focus-visible
+  {
+      border:1px solid #dca101 !important;
+  }
+.date1:hover
+{
+    border:1px solid #dca101 !important;
+}
+.time1:hover
+{
+    border:1px solid #dca101 !important;
+}
+.date1:focus-visible
+{
+    border:1px solid #dca101 !important;
+}
+.time1:focus-visible
+{
+    border:1px solid #dca101 !important;
+}
+.mt-3l
+{
+    margin-top:1.5rem;
+}
