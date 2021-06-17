@@ -105,6 +105,7 @@ export class CategoriesComponent implements OnInit {
   }
   search(search_categorie){
     this.searchval = search_categorie;
+    sessionStorage.setItem('searchval',this.searchval);
     if(this.searchval.length!=0){
       this.searchcat = true;
       this.allcat = false;

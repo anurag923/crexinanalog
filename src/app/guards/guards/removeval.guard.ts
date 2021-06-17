@@ -14,6 +14,9 @@ export class RemovevalGuard implements CanDeactivate<unknown> {
     // if(sessionStorage.getItem('time')!=null){
     //   sessionStorage.removeItem('time');
     // }
+    if(sessionStorage.getItem('searchval')!=null){
+      sessionStorage.removeItem('searchval');
+    }
     if(sessionStorage.getItem('auth_token')!=null&&sessionStorage.getItem('rentclicked')==null){
       if(sessionStorage.getItem('time')==null){
         sessionStorage.removeItem('no_hours');
