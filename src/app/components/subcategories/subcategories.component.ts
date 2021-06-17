@@ -156,15 +156,19 @@ export class SubcategoriesComponent implements OnInit {
     // this.categorie_products = false;
   }
   search(search_categorie){
-    this.searching = true;
-    if(search_categorie.length!=0){
-      sessionStorage.setItem('searchval',search_categorie);
-      this.searching = true;
+    console.log(search_categorie.length);
+    if(search_categorie.length == 0){
+      this.all_categories();
     }
+    // this.searching = true;
+    // if(search_categorie.length!=0){
+    //   sessionStorage.setItem('searchval',search_categorie);
+    //   this.searching = true;
+    // }
 
-    else{
-      this.searching = false;
-    }
+    // else{
+    //   this.searching = false;
+    // }
     
     if(sessionStorage.getItem('searchval').length!=0){
       const headers= new HttpHeaders()
