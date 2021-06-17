@@ -26,6 +26,6 @@ export class SidebarComponent implements OnInit {
     console.log(name);
     sessionStorage.setItem('cat_id', id);
     sessionStorage.setItem('cat_name', name);
-    this.route.navigate(['/Rent/Subcategories']);
+    this.route.navigate(['/rent/subcategories']);
   }
 }

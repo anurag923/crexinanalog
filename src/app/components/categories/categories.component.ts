@@ -101,7 +101,7 @@ export class CategoriesComponent implements OnInit {
   }
   singleproduct(id:any){
    sessionStorage.setItem('p_id', id);
-   this.route.navigate(['/Rent/Subcategories'])
+   this.route.navigate(['/rent/subcategories'])
   }
   search(search_categorie){
     this.searchval = search_categorie;
@@ -138,11 +138,11 @@ export class CategoriesComponent implements OnInit {
         sessionStorage.setItem('global_search','true');
       }
     }
-      this.route.navigate(['/Rent/Subcategories']);
+      this.route.navigate(['/rent/subcategories']);
     
   }
   all_categories(){
-    this.router.navigate(['/Rent']);
+    this.router.navigate(['/rent']);
   }
 
 }

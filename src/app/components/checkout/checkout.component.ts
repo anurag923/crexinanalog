@@ -856,7 +856,7 @@ export class CheckoutComponent implements OnInit {
          this.toastr.error(this.message,error.error.message,{
           positionClass: 'toast-top-center'
        });
-         this.router.navigate(['/Rent/Check-out']);
+         this.router.navigate(['/rent/check-out']);
        })
     }
     getcurrentdate() {

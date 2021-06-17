@@ -143,7 +143,7 @@ export class SubcategoriesComponent implements OnInit {
   }
   singleproduct(id:any){
     sessionStorage.setItem('sub_id', id);
-    this.router.navigate(['/Rent/BookingTypeSelection']);
+    this.router.navigate(['/rent/bookingtypeselection']);
     // const headers= new HttpHeaders()
     // .set('content-type', 'application/json')
     // .set('Access-Control-Allow-Origin', '*')
@@ -197,6 +197,6 @@ export class SubcategoriesComponent implements OnInit {
     }
   }
   all_categories(){
-    this.router.navigate(['/Rent']);
+    this.router.navigate(['/rent']);
   }
 }

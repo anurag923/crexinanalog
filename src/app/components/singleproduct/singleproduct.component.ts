@@ -395,7 +395,7 @@ export class SingleproductComponent implements OnInit {
     .set('Authorization',`Bearer ${this.auth_token}`);
     this.http.get<any>('https://www.superuser.crexin.com/api/subcategories/'+this.cat_id,{'headers':headers}).pipe(shareReplay(1)).subscribe((res)=>{
     console.log(res);
-    //this.route.navigate(['/Rent/Subcategories']);
+    //this.route.navigate(['/rent/subcategories']);
     // this.singleproduct = res.response;
      if(res.subcategories.length === 0 || res.subcategories.length === null){
       this.toastr.error(this.message,"No equipments available at this moment",{
@@ -495,7 +495,7 @@ export class SingleproductComponent implements OnInit {
       //  this.toastr.success(this.message,res.message,{
       //   positionClass:'toast-top-center'
       // });
-      this.router.navigate(['Rent/Check-out']);
+      this.router.navigate(['rent/check-out']);
      },(error)=>{
        console.log(error);
        if(error.error.message=='Bookings are allowed between 6AM to 9PM'){
@@ -565,7 +565,7 @@ export class SingleproductComponent implements OnInit {
         //   positionClass:'toast-top-center'
         // });
         //this.router.navigate(['checkout']);
-        this.router.navigate(['Rent/Check-out']);
+        this.router.navigate(['rent/check-out']);
       },(error)=>{
         console.log(error);
         if(error.error.message=='Bookings are allowed between 6AM to 9PM'){
@@ -655,7 +655,7 @@ export class SingleproductComponent implements OnInit {
         //   positionClass:'toast-top-center'
         // });
         //this.router.navigate(['checkout']);
-        this.router.navigate(['Rent/Check-out']);
+        this.router.navigate(['rent/check-out']);
       },(error)=>{
         console.log(error);
         if(error.error.message=='Bookings are allowed between 6AM to 9PM'){
@@ -721,7 +721,7 @@ export class SingleproductComponent implements OnInit {
     })
   }
   categories(){
-    this.router.navigate(['/Rent']);
+    this.router.navigate(['/rent']);
   }
   s(){
     this.bookings_notavailable = true;

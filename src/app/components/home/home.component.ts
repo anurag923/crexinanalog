@@ -74,7 +74,7 @@ export class HomeComponent implements OnInit {
   //     console.log(res);
   //     this.allcategories = res.categories;
   //     this.products = res.products;
-  //     this.router.navigate(['/Rent'])
+  //     this.router.navigate(['/rent'])
   //   })
   // }
   search_button(search_categorie:any){
@@ -82,7 +82,7 @@ export class HomeComponent implements OnInit {
       console.log(search_categorie);
       sessionStorage.setItem('search_categorie', search_categorie);
       sessionStorage.setItem('global_search', 'true');
-      this.router.navigate(['/Rent'])
+      this.router.navigate(['/rent'])
     }
     else {
       this.toastr.error(this.message,'Please search the any categoriy name',{
