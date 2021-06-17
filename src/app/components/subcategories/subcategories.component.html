@@ -52,7 +52,7 @@
                <div class="col-md-2">
                 <ul class="categories">
                     <li class="fs-15 pdl-10 categories-hover" (click)="all_categories()">All Categories</li>
-                    <li class="fs-15 pdl-10 categories-hover" [class.active]="selectedIndex === i" (click)="subcategories(i,categorie.id,categorie.cat_name)" *ngFor="let categorie of allcategories;let i = index">
+                    <li class="fs-15 pdl-10 categories-hover" [class.active]="selectedIndex === i" (click)="subcategories(i,categorie.id,categorie.c_name)" *ngFor="let categorie of allcategories;let i = index">
                         <a>{{categorie.c_name}}</a>
                     </li>
                     <li class="fs-15 pdl-10 categories-hover" [class.active]="selectedIndex === i" (click)="subcategories(i,categorie.id,categorie.c_name)" *ngFor="let categorie of searchcategories;let i = index">

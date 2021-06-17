@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/services/auth.service';
 import { CrexinService } from 'src/app/services/crexin.service';
+import { MustMatch } from 'src/app/_helpers/must-match.validator';
+// import { MustMatch } from './_helpers/must-match.validator';
 @Component({
   selector: 'app-usersignup',
   templateUrl: './usersignup.component.html',
@@ -24,9 +26,14 @@ export class UsersignupComponent implements OnInit {
   ngOnInit(): void {
        this.Singup = this.fb.group({
         password    : ['', [Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}')]],
+        c_password: ['', Validators.required],
         fullname   : ['', Validators.required],
         mobile      : ['', [Validators.required, Validators.pattern(("^((\\+91-?)|0)?[0-9]{10}$"))]],
-       });  
+       },
+       {
+        validator : MustMatch("password", "c_password")
+       }
+       );
   }
   get f() { return this.Singup.controls; }
 
