@@ -23,7 +23,7 @@
                             <div class="search">
                                 <div class="form-group has-search w-100">
                                     <span class="fa search_icon fa-search form-control-feedback"></span>
-                                    <input type="search" id="gsearch" name="gsearch" class="searchTerm"
+                                    <input type="search" id="gsearch" [(ngModel)]="searchval" name="gsearch" class="searchTerm"
                                         placeholder="Search for an Equipment" (keyup)="search(search_categorie.value)"
                                         #search_categorie>
                                 </div>
@@ -38,9 +38,13 @@
                         Equipments
                     </h1>
                 </div>
-                <div class="col-md-10">
-                    <h1 class="fs-20 fw-7001 pdl-10">
+                <div class="col-md-10 d-flex">
+                    <h1 class="fs-20 fw-7001 pdl-10 mr-auto">
                         {{cat_name}}
+                    </h1>
+
+                    <h1 *ngIf="searching" class="fs-20 fw-7001 pdl-10 pdr-10 ml-auto">
+                        searching for {{searchval}}
                     </h1>
                 </div>
             </div>

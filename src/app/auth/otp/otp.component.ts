@@ -108,8 +108,8 @@ otpsuccess(){
       //   sessionStorage.setItem('email',res.user.email)
       //   sessionStorage.setItem('phone',res.user.phone)
       // })
-      if(sessionStorage.getItem('route')=='/Rent/BookingTypeSelection'){
-        this.router.navigate(['/Rent/BookingTypeSelection']);
+      if(sessionStorage.getItem('route')=='/rent/bookingtypeselection'){
+        this.router.navigate(['/rent/bookingtypeselection']);
       }
       else{
         this.router.navigate(['/']);

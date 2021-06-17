@@ -46,8 +46,8 @@ export class AccountPasswordComponent implements OnInit {
         this.toastr.success(this.message,res.message,{
           positionClass:'toast-top-center'
         });
-        if(sessionStorage.getItem('route')=='/Rent/BookingTypeSelection'){
-          this.router.navigate(['/Rent/BookingTypeSelection']);
+        if(sessionStorage.getItem('route')=='/rent/bookingtypeselection'){
+          this.router.navigate(['/rent/bookingtypeselection']);
         }
         else{
           this.router.navigate(['/']);

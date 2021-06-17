@@ -17,6 +17,6 @@ export class CategorieslistComponent implements OnInit {
    this.cat_id = sessionStorage.getItem('cat_id');
   }
   subcategories(){
-    this.route.navigate(['/Rent/Subcategories'])
+    this.route.navigate(['/rent/subcategories'])
   }
 }

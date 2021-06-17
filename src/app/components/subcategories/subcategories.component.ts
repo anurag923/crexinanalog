@@ -30,9 +30,15 @@ export class SubcategoriesComponent implements OnInit {
   categories = true;
   globalsearch :boolean;
   searchcategories: any;
+  searchval:any;
+  searching:boolean;
   constructor(private toastr:ToastrService,private router:Router,private http:HttpClient,private activeroute:ActivatedRoute, private route:Router, private crexinservice:CrexinService) { }
 
   ngOnInit(): void {
+    if(sessionStorage.getItem('searchval')!=null){
+      this.searchval = sessionStorage.getItem('searchval');
+      this.searching = true;
+    }
     this.index = +sessionStorage.getItem('index'); 
     this.subcategories(this.index,sessionStorage.getItem('cat_id'),sessionStorage.getItem('cat_name'));
     if(sessionStorage.getItem('global_search') === 'true'){
@@ -137,7 +143,7 @@ export class SubcategoriesComponent implements OnInit {
   }
   singleproduct(id:any){
     sessionStorage.setItem('sub_id', id);
-    this.router.navigate(['/Rent/BookingTypeSelection']);
+    this.router.navigate(['/rent/bookingtypeselection']);
     // const headers= new HttpHeaders()
     // .set('content-type', 'application/json')
     // .set('Access-Control-Allow-Origin', '*')
@@ -150,7 +156,18 @@ export class SubcategoriesComponent implements OnInit {
     // this.categorie_products = false;
   }
   search(search_categorie){
-    const headers= new HttpHeaders()
+    this.searching = true;
+    if(search_categorie.length!=0){
+      sessionStorage.setItem('searchval',search_categorie);
+      this.searching = true;
+    }
+
+    else{
+      this.searching = false;
+    }
+    
+    if(sessionStorage.getItem('searchval').length!=0){
+      const headers= new HttpHeaders()
     .set('content-type', 'application/json')
     .set('Access-Control-Allow-Origin', '*')
     .set('Authorization',`Bearer ${this.auth_token}`);
@@ -169,8 +186,17 @@ export class SubcategoriesComponent implements OnInit {
       }
       // this.products = res.products;
     })
+    }
+    else{
+      this.crexinservice.getallcategories().subscribe((res)=>{
+        console.log(res.categories);
+        this.allcategories = res.categories;
+        this.globalsearch = false;
+        this.loading = false;
+      });
+    }
   }
   all_categories(){
-    this.router.navigate(['/Rent']);
+    this.router.navigate(['/rent']);
   }
 }
