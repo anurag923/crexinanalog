@@ -5,10 +5,14 @@
     background-color: #f6e8c3;
 }
 .completed-bookings{
-    background-color: #dcdcdc;
+    background-color: #fafafa;
 }
 .complete-job-text{
-    color: #1766b8;
+    color: #414a4c;
+}
+.complete-job-text:hover
+{
+    color:#dca101;
 }
 
 

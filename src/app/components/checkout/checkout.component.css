@@ -17,7 +17,7 @@
 }
 .form-group{
     width: 60% !important;
-    margin: auto;
+    
     margin-bottom: 10px !important;
 }
 .form-control{
@@ -25,7 +25,8 @@
     /* border: none !important; */
     border: 2px solid #ccc !important;
     border-radius: 5px !important;
-    padding:0 15px !important;
+    padding:0 4px !important;
+    font-size:13px !important;
 }
 .checkout-img{
     width: 200px !important;
@@ -51,7 +52,7 @@
     }
 }
 .radio{
-    padding: 30px;
+    padding: 0px;
 }
 .work-fields{
     padding: 10px 40px;
@@ -65,7 +66,7 @@
     }
 }
 .amount{
-  padding: 25px;
+  padding: 10px;
 }
 .details{
     padding: 25px;
@@ -86,3 +87,39 @@
 {
     width:100% !important;
 }
+
+select:hover {
+    border:1px solid #dca101 !important;
+   }
+   select:focus-visible
+   {
+       border:1px solid #dca101 !important;
+   }
+ .date1:hover
+ {
+     border:1px solid #dca101 !important;
+ }
+ .time1:hover
+ {
+     border:1px solid #dca101 !important;
+ }
+ .date1:focus-visible
+ {
+     border:1px solid #dca101 !important;
+ }
+ .time1:focus-visible
+ {
+     border:1px solid #dca101 !important;
+ }
+ .w-60Per
+ {
+     width:60%;
+ }
+ .w-10per
+ {
+    width:10%;
+ }
+ .w-8per
+ {
+     width:7%;
+ }
