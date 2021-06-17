@@ -12,10 +12,15 @@
         <thead class="header-bg">
           <tr>
             <th class="text-center text-color fs-17 fw-700">Equipment</th>
+
             <th class="text-center text-color fs-17 fw-700">{{bookingtype}}</th>
             <th class="text-center text-color fs-17 fw-700">Total Amount</th>
             <th class="text-center text-color fs-17 fw-700">Advance</th>
             <th class="text-center text-color fs-17 fw-700">Booking Summary</th>
+            <th class="text-center text-color fs-17 fw-700 w-60Per">{{bookingtype}}</th>
+            <th class="text-center text-color fs-17 fw-700 w-7per">Total Amount</th>
+            <th class="text-center text-color fs-17 fw-700 w-7per">Advance Paid</th>
+            <th class="text-center text-color fs-17 fw-700 w-10per">Booking Summary</th>
           </tr>
         </thead>
         <tbody class="table-bg">
@@ -31,7 +36,7 @@
             </td>
             <td class="radio">
               <form>
-                <div class="check-radio d-flex justify-content-between">
+                <div class="check-radio d-flex justify-content-between top-one">
                   <div class="form-check">
                     <input class="form-check-input" [checked]='checked_hourly?true:false' (click)="hourly_function()"
                       value="hourly" type="radio" name="flexRadioDefault" id="hourly">
@@ -65,10 +70,11 @@
                 </div>
                 <form [formGroup]="Hourly">
                   <div class="row mgl-0 mgr-0 mt-1">
-                    <div class="form-group col-md-4">
+                    <div class="form-group col-md-2">
                       <label for="" class="fs-15 text-color">No of Hours</label>
-                      <select name="" id="" (click)="nohours()" class="form-control w-50 bdr" formControlName="no_hours"
-                        [(ngModel)]="no_hours" [ngClass]="{ 'is-invalid': submitted_hourly  && h.no_hours.errors }">
+                      <select name="" id="" (click)="nohours()" class="form-control w-100 bdr"
+                        formControlName="no_hours" [(ngModel)]="no_hours"
+                        [ngClass]="{ 'is-invalid': submitted_hourly  && h.no_hours.errors }">
                         <option value="3">3hrs</option>
                         <option value="4">4hrs</option>
                         <option value="5">5hrs</option>
@@ -78,19 +84,20 @@
                         <div *ngIf="h.no_hours.errors.required" class="fs-15">No of Hours is required</div>
                       </div>
                     </div>
-                    <div class="form-group col-md-4">
+                    <div class="form-group col-md-3">
                       <label for="" class="fs-15  text-color">Start Date</label>
                       <input type="date" min="{{book_date1}}" (click)="getcurrentdate()" placeholder="23-04-21"
-                        class="form-control p-0" formControlName="h_startdate" [(ngModel)]="h_startdate"
+                        class="form-control p-0 w-100 date1 fs-13" formControlName="h_startdate"
+                        [(ngModel)]="h_startdate"
                         [ngClass]="{ 'is-invalid': submitted_hourly && h.h_startdate.errors }">
                       <div *ngIf="submitted_hourly  && h.h_startdate.errors" class="invalid-feedback">
                         <div *ngIf="h.h_startdate.errors.required" class="fs-15">Start Date is required</div>
                       </div>
                     </div>
-                    <div class="form-group col-md-4">
+                    <div class="form-group col-md-2">
                       <label for="" class="fs-15 text-color">Start Time</label>
-                      <select class="form-control p-0" aria-label="Default select example" [(ngModel)]="h_starttime"
-                        formControlName="h_starttime"
+                      <select class="form-control p-0 w-100 time1 fs-13" aria-label="Default select example"
+                        [(ngModel)]="h_starttime" formControlName="h_starttime"
                         [ngClass]="{ 'is-invalid': submitted_hourly  && h.h_starttime.errors }">
                         <option selected>Select time</option>
                         <option value="04 - 05 AM">04 - 05 AM</option>
@@ -132,6 +139,11 @@
                       </div>
                     </div>
                   </div>
+                  <div class="row mgl-0 mgr-0">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-3"></div>
+                    <div class="col-md-2"></div>
+                  </div>
                 </form>
               </div>
               <div class="work-options" *ngIf="daily">
@@ -141,9 +153,9 @@
                 </div>
                 <form [formGroup]="Daily">
                   <div class="row mgl-0 mgr-0">
-                    <div class="form-group col-md-4">
+                    <div class="form-group col-md-2">
                       <label for="" class="fs-15 text-color">No of Days</label>
-                      <select name="" id="" class="form-control w-50" (click)="d_days()" formControlName="no_days"
+                      <select name="" id="" class="form-control w-100" (click)="d_days()" formControlName="no_days"
                         [(ngModel)]="no_days" [ngClass]="{ 'is-invalid': submitted_daily && d.no_days.errors }">
                         <option value="1">1Day</option>
                         <option value="2">2Days</option>
@@ -155,22 +167,22 @@
                         <div *ngIf="d.no_days.errors.required" class="fs-15">No of Days is required</div>
                       </div>
                     </div>
-                    <div class="form-group col-md-4">
+                    <div class="form-group col-md-3">
                       <label for="" class="fs-15 text-color">Start Date</label>
                       <input type="date" min="{{book_date1}}" (click)="getcurrentdate()" placeholder="23-04-21"
-                        class="form-control pd-0" [(ngModel)]="d_startdate" formControlName="d_startdate"
+                        class="form-control date1 pd-0" [(ngModel)]="d_startdate" formControlName="d_startdate"
                         (change)="enddata(startdate.value)"
                         [ngClass]="{ 'is-invalid': submitted_daily && d.d_startdate.errors }" #startdate>
                       <div *ngIf="submitted_daily && d.d_startdate.errors" class="invalid-feedback">
                         <div *ngIf="d.d_startdate.errors.required" class="fs-15">Start Date is required</div>
                       </div>
                     </div>
-                    <div class="form-group col-md-4">
+                    <div class="form-group col-md-2">
                       <label for="" class="fs-15 text-color">Start Time</label>
                       <!-- <input [ngxTimepicker]="picker" (change)="endtime(starttime.value)" #starttime>
                                     <ngx-material-timepicker #picker></ngx-material-timepicker> -->
-                      <select class="form-control p-0" aria-label="Default select example" [(ngModel)]="d_starttime"
-                        formControlName="d_starttime" (change)="endtime(starttime.value)"
+                      <select class="form-control p-0 time1" aria-label="Default select example"
+                        [(ngModel)]="d_starttime" formControlName="d_starttime" (change)="endtime(starttime.value)"
                         [ngClass]="{ 'is-invalid': submitted_daily && d.d_starttime.errors }" #starttime>
                         <option selected>Select time</option>
                         <option value="04 - 05 AM">04 - 05 AM</option>
@@ -213,17 +225,18 @@
                     </div>
                   </div>
                   <div class="row mgl-0 mgr-0">
-                    <div class="col-md-4"></div>
-                    <div class="form-group col-md-4">
+                    <div class="col-md-2"></div>
+                    <div class="form-group col-md-3">
                       <label for="" class="fs-15">End Date</label>
-                      <input type="date" placeholder="23-04-21" class="form-control p-0" value="{{d_enddate}}" readonly>
+                      <input type="date" placeholder="23-04-21" class="form-control p-0 date1" value="{{d_enddate}}"
+                        readonly>
                       <!-- <div *ngIf="submitted_daily && d.d_enddate.errors" class="invalid-feedback" >
                                      <div *ngIf="d.d_enddate.errors.required" class="fs-15 fw-700">End Date is required</div>
                                    </div> -->
                     </div>
-                    <div class="form-group col-md-4">
+                    <div class="form-group col-md-2">
                       <label for="" class="fs-15">End Time</label>
-                      <input type="text" class="form-control" value="{{d_endtime}}" readonly>
+                      <input type="text" class="form-control time1" value="{{d_endtime}}" readonly>
                       <!-- <div *ngIf="submitted_daily && d.d_endtime.errors" class="invalid-feedback">
                                      <div *ngIf="d.d_endtime.errors.required" class="fs-15 fw-700">End Time is required</div>
                                    </div> -->
@@ -238,9 +251,9 @@
                 </div>
                 <form [formGroup]="Weekly">
                   <div class="row mgl-0 mgr-0">
-                    <div class="form-group col-md-4">
-                      <label for="" class="fs-15 text-color">No of Weeks</label>
-                      <select name="" (click)="w_days()" id="" class="form-control w-50" formControlName="no_weeks"
+                    <div class="form-group col-md-2">
+                      <label for="" class="fs-14 text-color">No of Weeks</label>
+                      <select name="" (click)="w_days()" id="" class="form-control w-100" formControlName="no_weeks"
                         [(ngModel)]="no_weeks" [ngClass]="{ 'is-invalid': submitted_weekly && w.no_weeks.errors }">
                         <option value="1">1Weeks</option>
                         <option value="2">2Weeks</option>
@@ -259,19 +272,19 @@
                         <div *ngIf="w.no_weeks.errors.required" class="fs-15">No of Weeks is required</div>
                       </div>
                     </div>
-                    <div class="form-group col-md-4">
-                      <label for="" class="fs-15 text-color">Start Date</label>
+                    <div class="form-group col-md-3">
+                      <label for="" class="fs-14 text-color">Start Date</label>
                       <input type="date" min="{{book_date1}}" (click)="getcurrentdate()" placeholder="23-04-21"
-                        class="form-control pd-0" [(ngModel)]="w_startdate" formControlName="w_startdate"
+                        class="form-control date1 pd-0" [(ngModel)]="w_startdate" formControlName="w_startdate"
                         [ngClass]="{ 'is-invalid': submitted_weekly  && w.w_startdate.errors }"
                         (change)="w_end_date(startdate.value)" #startdate>
                       <div *ngIf="submitted_weekly  && w.w_startdate.errors" class="invalid-feedback">
                         <div *ngIf="w.w_startdate.errors.required" class="fs-15">Start Date is required</div>
                       </div>
                     </div>
-                    <div class="form-group col-md-4">
-                      <label for="" class="fs-15 text-color">Start Time</label>
-                      <select class="form-control p-0" aria-label="Default select example" class="form-control"
+                    <div class="form-group col-md-2">
+                      <label for="" class="fs-14 text-color">Start Time</label>
+                      <select class="form-control time1 p-0" aria-label="Default select example" class="form-control"
                         [(ngModel)]="w_starttime" formControlName="w_starttime"
                         [ngClass]="{ 'is-invalid': submitted_weekly  && w.w_starttime.errors }"
                         (change)="w_end_time(starttime.value)" #starttime>
@@ -316,9 +329,9 @@
                     </div>
                   </div>
                   <div class="row mgl-0 mgr-0">
-                    <div class="col-md-4"></div>
-                    <div class="form-group col-md-4">
-                      <label for="" class="fs-15 text-color">End Date</label>
+                    <div class="col-md-2"></div>
+                    <div class="form-group col-md-3">
+                      <label for="" class="fs-14 text-color">End Date</label>
                       <input type="date" placeholder="23-04-21" class="form-control pd-0" value="{{w_enddate}}"
                         readonly>
                       <!-- <input type="date" placeholder="23-04-21" class="form-control pd-0" value="{{weekenddate}}"> -->
@@ -326,8 +339,8 @@
                                      <div *ngIf="w.w_starttime.errors.required" class="fs-15 fw-700">Start Time is required</div>
                                    </div> -->
                     </div>
-                    <div class="form-group col-md-4">
-                      <label for="" class="fs-15 text-color">End Time</label>
+                    <div class="form-group col-md-2">
+                      <label for="" class="fs-14 text-color">End Time</label>
                       <input type="text" class="form-control" placeholder="" value="{{w_endtime}}" readonly>
                       <!-- <input type="time" class="form-control" placeholder="7AM to 6PM" value="{{weekendtime}}"> -->
                       <!-- <div *ngIf="submitted_weekly  && w.w_endtime.errors" class="invalid-feedback">
@@ -340,11 +353,19 @@
             </td>
             <td class="w100">
               <div class="d-flex align-items-center">
+<<<<<<< HEAD
                 <h3 class="mgb-0 mgr-2" *ngIf="hourly"><span class="fs-17 text-color fw-700">₹ {{h_sub_total}} </span>
                 </h3>
                 <h3 class="mgb-0 mgr-2" *ngIf="daily"><span class="fs-17 text-color fw-700">₹ {{d_total_days_amount}} </span>
                 </h3>
                 <h3 class="mgb-0 mgr-2" *ngIf="weekly"><span class="fs-17 text-color fw-700">₹ {{w_total_weeks_amount}} </span>
+=======
+                <h3 class="mgb-0 mgr-2" *ngIf="hourly"><span class="fs-15 text-color fw-500">₹ {{h_grandtotal}} </span>
+                </h3>
+                <h3 class="mgb-0 mgr-2" *ngIf="daily"><span class="fs-15 text-color fw-500">₹ {{d_grandtotal}} </span>
+                </h3>
+                <h3 class="mgb-0 mgr-2" *ngIf="weekly"><span class="fs-15 text-color fw-500">₹ {{w_grandtotal}} </span>
+>>>>>>> a342f939d2545055fd75e715af4a6f547b404060
                 </h3>
                 <a>
                 </a>
@@ -352,17 +373,22 @@
             </td>
             <td class="w100">
               <div class="d-flex align-items-center">
+<<<<<<< HEAD
                 <h3 class="mgb-0 mgr-2" *ngIf="hourly"><span class="fs-17 text-color fw-700">₹ {{h_sub_total}} </span>
+=======
+                <h3 class="mgb-0 mgr-2" *ngIf="hourly"><span class="fs-15 text-color fw-500">₹ {{h_grandtotal}} </span>
+>>>>>>> a342f939d2545055fd75e715af4a6f547b404060
                 </h3>
-                <h3 class="mgb-0 mgr-2" *ngIf="daily"><span class="fs-17 text-color fw-700">₹ {{d_paid_amount}} </span>
+                <h3 class="mgb-0 mgr-2" *ngIf="daily"><span class="fs-15 text-color fw-500">₹ {{d_paid_amount}} </span>
                 </h3>
-                <h3 class="mgb-0 mgr-2" *ngIf="weekly"><span class="fs-17 text-color fw-700">₹ {{w_paid_amount}} </span>
+                <h3 class="mgb-0 mgr-2" *ngIf="weekly"><span class="fs-15 text-color fw-500">₹ {{w_paid_amount}} </span>
                 </h3>
                 <a>
                 </a>
               </div>
             </td>
             <td class="amount">
+<<<<<<< HEAD
               <h1 *ngIf="hourly"><span class="fs-17 text-color fw-700 mr-1">Sub Total:</span><span
                   class="fs-17 text-color fw-700">₹ {{h_sub_tot}} </span></h1>
               <h1 *ngIf="daily"><span class="fs-17 text-color fw-700 mr-1">Sub Total:</span><span
@@ -370,16 +396,34 @@
               <h1 *ngIf="weekly"><span class="fs-17 text-color fw-700 mr-1">Sub Total:</span><span
                   class="fs-17 text-color fw-700">₹ {{w_sub_tot}} </span></h1>
               <h1><span class="fs-17 text-color fw-700 mr-1">Taxes:</span><span class="fs-17 text-color fw-700">₹
+=======
+              <h1 *ngIf="hourly"><span class="fs-15 text-color fw-500 mr-1">Sub Total:</span><span
+                  class="fs-15 text-color fw-500">₹ {{h_sub_total}} </span></h1>
+              <h1 *ngIf="daily"><span class="fs-15 text-color fw-500 mr-1">Sub Total:</span><span
+                  class="fs-15 text-color fw-500">₹ {{d_total_days_amount}} </span></h1>
+              <h1 *ngIf="weekly"><span class="fs-15 text-color fw-500 mr-1">Sub Total:</span><span
+                  class="fs-15 text-color fw-500">₹ {{w_total_weeks_amount}} </span></h1>
+              <h1><span class="fs-15 text-color fw-500 mr-1">Taxes:</span><span class="fs-17 text-color fw-500">₹
+>>>>>>> a342f939d2545055fd75e715af4a6f547b404060
                   {{gstval}} <i class="fa fa-info" style="color:red; cursor:pointer"
                     matTooltip="Service Charges @2%. GST on Service Charge @ 18% "
                     [matTooltipPosition]="position.value"></i></span></h1>
               <hr>
+<<<<<<< HEAD
               <h1 *ngIf="hourly"><span class="fs-17 text-color fw-700 mr-1">Grand Total:</span><span
                   class="fs-17 text-color fw-700">₹ {{h_sub_total}}</span></h1>
               <h1 *ngIf="daily"><span class="fs-17 text-color fw-700 mr-1">Grand Total:</span><span
                   class="fs-17 text-color fw-700">₹ {{d_total_days_amount}}</span></h1>
               <h1 *ngIf="weekly"><span class="fs-17 text-color fw-700 mr-1">Grand Total:</span><span
                   class="fs-17 text-color fw-700">₹ {{w_total_weeks_amount}}</span></h1>
+=======
+              <h1 *ngIf="hourly"><span class="fs-15 text-color fw-500 mr-1">Grand Total:</span><span
+                  class="fs-15 text-color fw-500">₹ {{h_grandtotal}}</span></h1>
+              <h1 *ngIf="daily"><span class="fs-15 text-color fw-500 mr-1">Grand Total:</span><span
+                  class="fs-15 text-color fw-500">₹ {{d_grandtotal}}</span></h1>
+              <h1 *ngIf="weekly"><span class="fs-15 text-color fw-500 mr-1">Grand Total:</span><span
+                  class="fs-15 text-color fw-500">₹ {{w_grandtotal}}</span></h1>
+>>>>>>> a342f939d2545055fd75e715af4a6f547b404060
             </td>
           </tr>
         </tbody>
