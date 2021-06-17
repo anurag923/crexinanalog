@@ -112,6 +112,9 @@ export class CheckoutComponent implements OnInit {
   subcategory_image: any;
   subcategory_rate:any;
   gstval:number;
+  h_sub_tot:number;
+  d_sub_tot:number;
+  w_sub_tot:number;
   constructor(private checkoutservice:CheckoutService,private winRef: WindowRefService,private datePipe: DatePipe,private fb:FormBuilder, private toastr:ToastrService,private router:Router,private http:HttpClient,private activeroute:ActivatedRoute, private route:Router, private crexinservice:CrexinService) { 
     console.log(this.d_enddate);
     if(sessionStorage.getItem('time')==null){
@@ -204,13 +207,18 @@ export class CheckoutComponent implements OnInit {
       console.log(this.h_no_hours);
       console.log(this.hourly_rate);
       this.h_sub_total = this.h_no_hours*this.hourly_rate
-      console.log(this.h_sub_total)
-      var servicecharge = 0.02*this.h_sub_total;
-      var gst1 = 0.18*servicecharge;
-      var gst2 = gst1.toFixed(2);
-      var gst = +gst2;
-      this.gstval = gst;
-      this.h_grandtotal = this.h_sub_total+gst;
+      console.log(this.h_sub_total);
+      var subtotalval = this.h_sub_total/1.0236;
+      var subtotalvalround = subtotalval.toFixed(2);
+      this.h_sub_tot = +subtotalvalround;
+      // var servicecharge = 0.02*this.h_sub_total;
+      // var gst1 = 0.18*servicecharge;
+      // var gst2 = gst1.toFixed(2);
+      // var gst = +gst2;
+      var gst = this.h_sub_total-this.h_sub_tot;
+      var gstround = gst.toFixed(2);
+      this.gstval = +gstround;
+      // this.h_grandtotal = this.h_sub_total+gst;
       // this.h_time = true;
       // this.d_time = false;
       // this.d_time = false;
@@ -224,15 +232,21 @@ export class CheckoutComponent implements OnInit {
       this.d_no_days = +this.no_days
       this.d_total_days_amount = this.d_no_days*this.daily_rate
       console.log(this.d_total_days_amount);
-      var servicecharge = 0.02*this.d_total_days_amount;
-      var gst1 = 0.18*servicecharge;
-      var gst2 = gst1.toFixed(2);
-      var gst = +gst2;
-      this.gstval = gst;  
-      this.d_grandtotal = this.d_total_days_amount+gst;
-      var d_advance = this.d_grandtotal/10;
+      // var servicecharge = 0.02*this.d_total_days_amount;
+      // var gst1 = 0.18*servicecharge;
+      // var gst2 = gst1.toFixed(2);
+      // var gst = +gst2;
+      // this.gstval = gst;  
+      //this.d_grandtotal = this.d_total_days_amount+gst;
+      var d_advance = this.d_total_days_amount/10;
       var d_advance_round = d_advance.toFixed(2);
       this.d_paid_amount = +d_advance_round;
+      var d_subtotal = this.d_total_days_amount/1.0236;
+      var d_subtotal_round = d_subtotal.toFixed(2);
+      this.d_sub_tot = +d_subtotal_round;
+      var d_gst = this.d_total_days_amount - this.d_sub_tot;
+      var d_gst_round = d_gst.toFixed(2);
+      this.gstval = +d_gst_round
       console.log(this.d_paid_amount);
     }
     else if(sessionStorage.getItem('time')=='weekly'){
@@ -244,17 +258,23 @@ export class CheckoutComponent implements OnInit {
       this.w_no_weeks = +this.no_weeks
       this.w_total_weeks_amount = this.w_no_weeks*this.weekly_rate
       console.log(this.w_total_weeks_amount);
-      var servicecharge = 0.02*this.w_total_weeks_amount;
-      var gst1 = 0.18*servicecharge;
-      var gst2 = gst1.toFixed(2);
-      var gst = +gst2;
-      this.gstval = gst;
-      this.w_grandtotal = this.w_total_weeks_amount+gst;
-      console.log(this.w_grandtotal);
-      var w_advance = this.w_grandtotal/5;
+      // var servicecharge = 0.02*this.w_total_weeks_amount;
+      // var gst1 = 0.18*servicecharge;
+      // var gst2 = gst1.toFixed(2);
+      // var gst = +gst2;
+      // this.gstval = gst;
+      // this.w_grandtotal = this.w_total_weeks_amount+gst;
+      // console.log(this.w_grandtotal);
+      var w_advance = this.w_total_weeks_amount/5;
       var w_advance_round = w_advance.toFixed(2);
       this.w_paid_amount = +w_advance_round;
       console.log(this.w_paid_amount);
+      var w_sub = this.w_total_weeks_amount/1.0236;
+      var w_sub_round = w_sub.toFixed(2);
+      this.w_sub_tot =  +w_sub_round;
+      var w_gst = this.w_total_weeks_amount - this.w_sub_tot;
+      var w_gst_round = w_gst.toFixed(2);
+      this.gstval = +w_gst_round;
     }
 
     else if(sessionStorage.getItem('time')==null){
@@ -268,12 +288,17 @@ export class CheckoutComponent implements OnInit {
       console.log(this.hourly_rate);
       this.h_sub_total = this.h_no_hours*this.hourly_rate
       console.log(this.h_sub_total)
-      var servicecharge = 0.02*this.h_sub_total;
-      var gst1 = 0.18*servicecharge;
-      var gst2 = gst1.toFixed(2);
-      var gst = +gst2;
-      this.gstval = gst;
-      this.h_grandtotal = this.h_sub_total+gst;
+      var subtotalval = this.h_sub_total/1.0236;
+      var subtotalvalround = subtotalval.toFixed(2);
+      this.h_sub_tot = +subtotalvalround;
+      // var servicecharge = 0.02*this.h_sub_total;
+      // var gst1 = 0.18*servicecharge;
+      // var gst2 = gst1.toFixed(2);
+      // var gst = +gst2;
+      var gst = this.h_sub_total-this.h_sub_tot;
+      var gstround = gst.toFixed(2);
+      this.gstval = +gstround;
+      // this.h_grandtotal = this.h_sub_total+gst;
     }
     else{
       this.toastr.error(this.message,'Please Select the any options',{
@@ -319,16 +344,21 @@ export class CheckoutComponent implements OnInit {
       // sessionStorage.setItem('no_hours',this.Hourly.get('no_hours').value);
       this.h_no_hours = +this.no_hours
       this.hourly_rate = sessionStorage.getItem('hourly_rate');
-      this.h_sub_total = this.h_no_hours*this.hourly_rate
+      this.h_sub_total = this.h_no_hours*this.hourly_rate;
+      var subtotalval = this.h_sub_total/1.0236
+      var subtotalvalround = subtotalval.toFixed(2);
+      this.h_sub_tot = +subtotalvalround;
       // console.log(this.h_sub_total)
       // this.h_grandtotal = this.h_sub_total+0
       // console.log(this.h_grandtotal)
-      var servicecharge = 0.02*this.h_sub_total;
-      var gst1 = 0.18*servicecharge;
-      var gst2 = gst1.toFixed(2);
-      var gst = +gst2;
-      this.gstval = gst;
-      this.h_grandtotal = this.h_sub_total+gst;
+      // var servicecharge = 0.02*this.h_sub_total;
+      // var gst1 = 0.18*servicecharge;
+      // var gst2 = gst1.toFixed(2);
+      // var gst = +gst2;
+      var gst = this.h_sub_total-this.h_sub_tot;
+      var gstround = gst.toFixed(2);
+      this.gstval = +gstround;
+      // this.h_grandtotal = this.h_sub_total+gst;
     }
     d_days(){
       sessionStorage.setItem('time', 'daily')
@@ -337,15 +367,25 @@ export class CheckoutComponent implements OnInit {
       this.d_no_days = +this.no_days
       this.d_total_days_amount = this.d_no_days*this.daily_rate
       console.log(this.d_total_days_amount);
-      var servicecharge = 0.02*this.d_total_days_amount;
-      var gst1 = 0.18*servicecharge;
-      var gst2 = gst1.toFixed(2);
-      var gst = +gst2;
-      this.gstval = gst;  
-      this.d_grandtotal = this.d_total_days_amount+gst;
-      var d_advance = this.d_grandtotal/10;
+      // var servicecharge = 0.02*this.d_total_days_amount;
+      // var gst1 = 0.18*servicecharge;
+      // var gst2 = gst1.toFixed(2);
+      // var gst = +gst2;
+      // this.gstval = gst;  
+      // this.d_grandtotal = this.d_total_days_amount+gst;
+      // var d_advance = this.d_grandtotal/10;
+      // var d_advance_round = d_advance.toFixed(2);
+      // this.d_paid_amount = +d_advance_round;
+      // console.log(this.d_paid_amount);
+      var d_advance = this.d_total_days_amount/10;
       var d_advance_round = d_advance.toFixed(2);
       this.d_paid_amount = +d_advance_round;
+      var d_subtotal = this.d_total_days_amount/1.0236;
+      var d_subtotal_round = d_subtotal.toFixed(2);
+      this.d_sub_tot = +d_subtotal_round;
+      var d_gst = this.d_total_days_amount - this.d_sub_tot;
+      var d_gst_round = d_gst.toFixed(2);
+      this.gstval = +d_gst_round
       console.log(this.d_paid_amount);
       // this.d_paid_amount = this.d_total_days_amount/10
       // console.log(this.d_paid_amount);
@@ -399,19 +439,29 @@ export class CheckoutComponent implements OnInit {
       // this.w_paid_amount = this.w_total_weeks_amount/5
       // console.log(this.w_paid_amount);
       // this.w_grandtotal = this.w_total_weeks_amount+0
-      var servicecharge = 0.02*this.w_total_weeks_amount;
-      var gst1 = 0.18*servicecharge;
-      var gst2 = gst1.toFixed(2);
-      var gst = +gst2;
-      this.gstval = gst;
-      this.w_grandtotal = this.w_total_weeks_amount+gst;
-      console.log(this.w_grandtotal);
-      var w_advance = this.w_grandtotal/5;
+      // var servicecharge = 0.02*this.w_total_weeks_amount;
+      // var gst1 = 0.18*servicecharge;
+      // var gst2 = gst1.toFixed(2);
+      // var gst = +gst2;
+      // this.gstval = gst;
+      // this.w_grandtotal = this.w_total_weeks_amount+gst;
+      // console.log(this.w_grandtotal);
+      // var w_advance = this.w_grandtotal/5;
+      // var w_advance_round = w_advance.toFixed(2);
+      // this.w_paid_amount = +w_advance_round;
+
+      // console.log(this.w_paid_amount);
+      // console.log(this.w_grandtotal);
+      var w_advance = this.w_total_weeks_amount/5;
       var w_advance_round = w_advance.toFixed(2);
       this.w_paid_amount = +w_advance_round;
-
       console.log(this.w_paid_amount);
-      console.log(this.w_grandtotal);
+      var w_sub = this.w_total_weeks_amount/1.0236;
+      var w_sub_round = w_sub.toFixed(2);
+      this.w_sub_tot =  +w_sub_round;
+      var w_gst = this.w_total_weeks_amount - this.w_sub_tot;
+      var w_gst_round = w_gst.toFixed(2);
+      this.gstval = +w_gst_round;
       sessionStorage.setItem('no_hours',this.Weekly.get('no_weeks').value);
       var str  = this.Weekly.get('no_weeks').value 
       console.log(str);
@@ -499,11 +549,21 @@ export class CheckoutComponent implements OnInit {
       this.d_no_days = +this.no_days
       this.d_total_days_amount = this.d_no_days*this.daily_rate
       console.log(this.d_total_days_amount);
-      var servicecharge = 0.02*this.d_total_days_amount;
-      var gst = 0.18*servicecharge;  
-      this.gstval = gst;
-      this.d_grandtotal = this.d_total_days_amount+gst;
-      this.d_paid_amount = this.d_grandtotal/10
+      // var servicecharge = 0.02*this.d_total_days_amount;
+      // var gst = 0.18*servicecharge;  
+      // this.gstval = gst;
+      // this.d_grandtotal = this.d_total_days_amount+gst;
+      // this.d_paid_amount = this.d_grandtotal/10
+      // console.log(this.d_paid_amount);
+      var d_advance = this.d_total_days_amount/10;
+      var d_advance_round = d_advance.toFixed(2);
+      this.d_paid_amount = +d_advance_round;
+      var d_subtotal = this.d_total_days_amount/1.0236;
+      var d_subtotal_round = d_subtotal.toFixed(2);
+      this.d_sub_tot = +d_subtotal_round;
+      var d_gst = this.d_total_days_amount - this.d_sub_tot;
+      var d_gst_round = d_gst.toFixed(2);
+      this.gstval = +d_gst_round
       console.log(this.d_paid_amount);
     }
     else if(sessionStorage.getItem('time')=='weekly'){
@@ -515,13 +575,23 @@ export class CheckoutComponent implements OnInit {
       this.w_no_weeks = +this.no_weeks
       this.w_total_weeks_amount = this.w_no_weeks*this.weekly_rate
       console.log(this.w_total_weeks_amount);
-      var servicecharge = 0.02*this.w_total_weeks_amount;
-      var gst = 0.18*servicecharge;
-      this.gstval = gst;
-      this.w_grandtotal = this.w_total_weeks_amount+gst;
-      console.log(this.w_grandtotal);
-      this.w_paid_amount = this.w_grandtotal/5
+      // var servicecharge = 0.02*this.w_total_weeks_amount;
+      // var gst = 0.18*servicecharge;
+      // this.gstval = gst;
+      // this.w_grandtotal = this.w_total_weeks_amount+gst;
+      // console.log(this.w_grandtotal);
+      // this.w_paid_amount = this.w_grandtotal/5
+      // console.log(this.w_paid_amount);
+      var w_advance = this.w_total_weeks_amount/5;
+      var w_advance_round = w_advance.toFixed(2);
+      this.w_paid_amount = +w_advance_round;
       console.log(this.w_paid_amount);
+      var w_sub = this.w_total_weeks_amount/1.0236;
+      var w_sub_round = w_sub.toFixed(2);
+      this.w_sub_tot =  +w_sub_round;
+      var w_gst = this.w_total_weeks_amount - this.w_sub_tot;
+      var w_gst_round = w_gst.toFixed(2);
+      this.gstval = +w_gst_round;
     }
 
     }
@@ -641,11 +711,21 @@ export class CheckoutComponent implements OnInit {
       this.d_no_days = +this.no_days
       this.d_total_days_amount = this.d_no_days*this.daily_rate
       console.log(this.d_total_days_amount);
-      var servicecharge = 0.02*this.d_total_days_amount;
-      var gst = 0.18*servicecharge;  
-      this.gstval = gst;
-      this.d_grandtotal = this.d_total_days_amount+gst;
-      this.d_paid_amount = this.d_grandtotal/10
+      // var servicecharge = 0.02*this.d_total_days_amount;
+      // var gst = 0.18*servicecharge;  
+      // this.gstval = gst;
+      // this.d_grandtotal = this.d_total_days_amount+gst;
+      // this.d_paid_amount = this.d_grandtotal/10
+      // console.log(this.d_paid_amount);
+      var d_advance = this.d_total_days_amount/10;
+      var d_advance_round = d_advance.toFixed(2);
+      this.d_paid_amount = +d_advance_round;
+      var d_subtotal = this.d_total_days_amount/1.0236;
+      var d_subtotal_round = d_subtotal.toFixed(2);
+      this.d_sub_tot = +d_subtotal_round;
+      var d_gst = this.d_total_days_amount - this.d_sub_tot;
+      var d_gst_round = d_gst.toFixed(2);
+      this.gstval = +d_gst_round
       console.log(this.d_paid_amount);
     }
     else if(sessionStorage.getItem('time')=='weekly'){
@@ -657,13 +737,23 @@ export class CheckoutComponent implements OnInit {
       this.w_no_weeks = +this.no_weeks
       this.w_total_weeks_amount = this.w_no_weeks*this.weekly_rate
       console.log(this.w_total_weeks_amount);
-      var servicecharge = 0.02*this.w_total_weeks_amount;
-      var gst = 0.18*servicecharge;
-      this.gstval = gst;
-      this.w_grandtotal = this.w_total_weeks_amount+gst;
-      console.log(this.w_grandtotal);
-      this.w_paid_amount = this.w_grandtotal/5
+      // var servicecharge = 0.02*this.w_total_weeks_amount;
+      // var gst = 0.18*servicecharge;
+      // this.gstval = gst;
+      // this.w_grandtotal = this.w_total_weeks_amount+gst;
+      // console.log(this.w_grandtotal);
+      // this.w_paid_amount = this.w_grandtotal/5
+      // console.log(this.w_paid_amount);
+      var w_advance = this.w_total_weeks_amount/5;
+      var w_advance_round = w_advance.toFixed(2);
+      this.w_paid_amount = +w_advance_round;
       console.log(this.w_paid_amount);
+      var w_sub = this.w_total_weeks_amount/1.0236;
+      var w_sub_round = w_sub.toFixed(2);
+      this.w_sub_tot =  +w_sub_round;
+      var w_gst = this.w_total_weeks_amount - this.w_sub_tot;
+      var w_gst_round = w_gst.toFixed(2);
+      this.gstval = +w_gst_round;
     }
 
     }
@@ -716,7 +806,7 @@ export class CheckoutComponent implements OnInit {
             this.toastr.success(this.message,res.message,{
               positionClass: 'toast-top-center'
           });
-          this.router.navigate(['rent']);
+          this.router.navigate(['booked']);
           },(error)=>{
             this.toastr.error(this.message,error.error.message,{
             positionClass: 'toast-top-center'
@@ -761,7 +851,7 @@ export class CheckoutComponent implements OnInit {
             this.toastr.success(this.message,res.message,{
               positionClass: 'toast-top-center'
           });
-          this.router.navigate(['rent']);
+          this.router.navigate(['booked']);
           },(error)=>{
             this.toastr.error(this.message,error.error.message,{
               positionClass: 'toast-top-center'
@@ -812,7 +902,7 @@ export class CheckoutComponent implements OnInit {
             this.toastr.success(this.message,'You have successfully booked this equipment',{
               positionClass: 'toast-top-center'
           });
-          this.router.navigate(['rent']);
+          this.router.navigate(['booked']);
           },(error)=>{
             this.toastr.error(this.message,error.error.message,{
               positionClass: 'toast-top-center'
